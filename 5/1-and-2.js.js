@@ -14,24 +14,6 @@ const crates = [
 
 const regex = /move (\d{1,2}) from (\d{1,2}) to (\d{1,2})/;
 
-// PART 1
-// fs.readFile("instructions.txt", "utf8", function (err, data) {
-//   data.split("\n").map((instruction) => {
-//     const match = instruction.match(regex);
-//     const q = match[1];
-//     const from = Number(match[2]) - 1;
-//     const to = Number(match[3]) - 1;
-
-//     for (let index = 0; index < q; index++) {
-//       const crate = crates[from].shift();
-//       crates[to].unshift(crate);
-//     }
-//   }, 0);
-
-//   console.log(crates);
-// });
-
-// PART 2
 fs.readFile("instructions.txt", "utf8", function (err, data) {
   data.split("\n").map((instruction) => {
     const match = instruction.match(regex);
@@ -39,6 +21,13 @@ fs.readFile("instructions.txt", "utf8", function (err, data) {
     const from = Number(match[2]) - 1;
     const to = Number(match[3]) - 1;
 
+    // PART 1 (Only run one part at a time. Comment out the other part.)
+    for (let index = 0; index < q; index++) {
+      const crate = crates[from].shift();
+      crates[to].unshift(crate);
+    }
+
+    // PART 2 (Only run one part at a time. Comment out the other part.)
     const cratesToMove = crates[from].splice(0, q);
     crates[to] = cratesToMove.concat(crates[to]);
   }, 0);

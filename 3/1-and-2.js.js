@@ -9,6 +9,7 @@ fs.readFile("input.txt", "utf8", function (err, data) {
     const prio = all.indexOf(doubleItem) + 1;
     return prioCount + prio;
   }, 0);
+  console.log("totalPrioCount1", totalPrioCount1);
 
   // PART 2
   const elfGroups = groupByN(3, data.split("\n"));
@@ -17,6 +18,7 @@ fs.readFile("input.txt", "utf8", function (err, data) {
     const prio = all.indexOf(doubleItem) + 1;
     return prioCount + prio;
   }, 0);
+  console.log("totalPrioCount2", totalPrioCount2);
 });
 
 const alphabet = "abcdefghijklmnopqrstuvwxyz";

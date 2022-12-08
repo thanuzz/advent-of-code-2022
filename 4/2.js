@@ -1,8 +1,7 @@
 const fs = require("fs");
 
 fs.readFile("input.txt", "utf8", function (err, data) {
-  // PART 1
-  const totalCount1 = data.split("\n").reduce((count, sections) => {
+  const totalCount2 = data.split("\n").reduce((count, sections) => {
     const pairs = sections.split(",");
     const start1 = Number(pairs[0].split("-")[0]);
     const end1 = Number(pairs[0].split("-")[1]);
@@ -10,8 +9,8 @@ fs.readFile("input.txt", "utf8", function (err, data) {
     const end2 = Number(pairs[1].split("-")[1]);
 
     if (
-      (start1 >= start2 && end1 <= end2) ||
-      (start1 <= start2 && end1 >= end2)
+      (start1 >= start2 && start1 <= end2) ||
+      (start1 <= start2 && end1 >= start2)
     ) {
       return count + 1;
     }
@@ -19,5 +18,5 @@ fs.readFile("input.txt", "utf8", function (err, data) {
     return count;
   }, 0);
 
-  console.log("totalCount1", totalCount1);
+  console.log("totalCount2", totalCount2);
 });

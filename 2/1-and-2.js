@@ -8,6 +8,7 @@ fs.readFile("input.txt", "utf8", function (err, data) {
     const me = normalizeHand[input[1]];
     return prev + getPointsForFight(them, me) + handScore[me];
   }, 0);
+  console.log("totalScorePart1", totalScorePart1);
 
   // PART 2
   const totalScorePart2 = data.split("\n").reduce((prev, curr) => {
@@ -16,6 +17,7 @@ fs.readFile("input.txt", "utf8", function (err, data) {
     const me = getHandByResult(them, input[1]);
     return prev + getPointsForFight(them, me) + handScore[me];
   }, 0);
+  console.log("totalScorePart2", totalScorePart2);
 });
 
 const normalizeHand = {
