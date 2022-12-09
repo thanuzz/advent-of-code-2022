@@ -1,5 +1,6 @@
 const fs = require("fs");
-const track = new Set(["0,0"]);
+
+const tailPath = new Set(["0,0"]);
 let headX = 0;
 let headY = 0;
 let knots = [
@@ -28,18 +29,16 @@ fs.readFile("input.txt", "utf8", (err, data) => {
     }
   });
 
-  console.log("track", track.size);
+  console.log(tailPath.size);
 });
 
 const tailFollow = () => {
   for (let i = 0; i < knots.length; i++) {
     let [prevX, prevY] = i == 0 ? [headX, headY] : knots[i - 1];
-    let currX = knots[i][0];
-    let currY = knots[i][1];
-    knots[i] = moveKnot(prevX, prevY, currX, currY);
+    knots[i] = moveKnot(prevX, prevY, knots[i][0], knots[i][1]);
   }
 
-  track.add(`${knots[8][0]},${knots[8][1]}`);
+  tailPath.add(`${knots[8][0]},${knots[8][1]}`);
 };
 
 const moveKnot = (prevX, prevY, currX, currY) => {
@@ -60,7 +59,7 @@ const moveKnot = (prevX, prevY, currX, currY) => {
     }
   }
 
-  // different rows: 2+ row diff (head moves vertically)
+  // different rows: 2+ row diff
   if (diffY > 1) {
     // move x if needed
     if (diffX == 1) {
